@@ -1,0 +1,40 @@
+:host {
+  
+  flex: 0.5;
+  text-align: center;
+  
+  .board {
+    
+    display: flex;
+    
+    .shape-button {
+      flex: 1;
+      text-align: center;
+      display: inline-flex;
+      margin: 5px;
+      width: 150px;
+      cursor: pointer;
+      flex-direction: column;
+      padding: 5px;
+      font-size: 20px;
+      
+      .icon {
+        font-size: 60px;
+        
+        i {
+          color: #80558C;
+        }
+        
+      }
+      
+      &:hover {
+        .icon i {
+          color: #AF7AB3;
+          
+        }
+      }
+    }
+    
+  }
+  
+}

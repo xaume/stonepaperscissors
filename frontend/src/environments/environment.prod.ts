@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'https://jaime-sps-backend.herokuapp.com/sps/game/'
 };

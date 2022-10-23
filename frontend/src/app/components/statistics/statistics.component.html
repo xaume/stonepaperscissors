@@ -1,0 +1,39 @@
+<h2>Game statistics</h2>
+
+<div class="statistics" *ngIf="statistics">
+  <div class="game-totals">
+    <h3>Played games</h3>
+    <ngx-charts-advanced-pie-chart
+      [scheme]="'vivid'"
+      [results]="resultsData"
+      (select)="onSelect($event)"
+      (activate)="onActivate($event)"
+      (deactivate)="onDeactivate($event)"
+    >
+    </ngx-charts-advanced-pie-chart>
+  </div>
+
+  <div class="shape-totals">
+
+    <div class="shape-totals-item">
+      <h3>Player hands</h3>
+      <ngx-charts-pie-chart
+        [results]="playerData"
+        [scheme]="'cool'"
+        [labels]="true"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+
+    <div class="shape-totals-item">
+      <h3>Computer hands</h3>
+      <ngx-charts-pie-chart
+        [results]="computerData"
+        [scheme]="'cool'"
+        [labels]="true"
+      >
+      </ngx-charts-pie-chart>
+    </div>
+
+  </div>
+</div>

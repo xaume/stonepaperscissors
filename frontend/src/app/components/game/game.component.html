@@ -1,0 +1,13 @@
+<h2>Choose your shape!</h2>
+
+<div class="board">
+  <a class="shape-button" *ngFor="let shape of shapes" (click)="play(shape.name)">
+    <span class="icon" style="width:100%">  
+      <i [ngClass]="'fas fa-' + shape.icon"></i>
+    </span>
+    <span>{{ shape.name }}</span>
+  </a>
+</div>
+
+<app-game-results [gameResult]="gameResult">
+</app-game-results>

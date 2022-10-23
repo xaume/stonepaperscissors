@@ -1,0 +1,30 @@
+:host {
+
+  flex: 0.5;
+  text-align: center;
+
+  .result-panel {
+
+    margin: 20px 10px;
+
+    .result {
+      font-size: 40px;
+      padding: 30px;
+
+      i {
+        font-size: 40px;
+        padding: 10px;
+      }
+
+    }
+
+    p {
+      font-size: 30px;
+
+      i {
+        padding: 0 10px;
+      }
+    }
+
+  }
+}

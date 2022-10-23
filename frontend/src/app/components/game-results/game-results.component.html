@@ -1,0 +1,18 @@
+<div *ngIf="gameResult" class="result-panel">
+  <div class="result" [ngSwitch]="gameResult.result">
+    <span *ngSwitchCase="'WIN'">You win! <i class="far fa-face-smile-beam"></i></span>
+    <span *ngSwitchCase="'LOSS'">You lose! <i class="far fa-face-tired"></i></span>
+    <span *ngSwitchCase="'DRAW'">It's a draw <i class="far fa-face-meh-blank"></i></span>
+  </div>
+
+  <p class="selection">
+    <span>You played: </span>
+    <strong>{{shapeMap.get(gameResult.playerShape)?.name}}</strong> 
+    <i [ngClass]="'fas fa-' + shapeMap.get(gameResult.playerShape)?.icon"></i>
+  </p>
+  <p class="selection">
+    <span>Computer played: </span>
+    <strong>{{shapeMap.get(gameResult.computerShape)?.name}}</strong> 
+    <i [ngClass]="'fas fa-' + shapeMap.get(gameResult.computerShape)?.icon"></i>
+  </p>
+</div>

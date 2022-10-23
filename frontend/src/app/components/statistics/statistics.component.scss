@@ -1,0 +1,18 @@
+:host {
+  flex: 0.7;
+
+  .statistics {
+    display: flex;
+    flex-direction: column;
+
+    .shape-totals {
+      display: flex;
+      height: 400px;
+
+      .shape-totals-item {
+        flex: 1;
+      }
+    }
+
+  }
+}
