@@ -4,7 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
@@ -180,6 +183,13 @@ class GameServiceImplTest {
                         .filter(s -> Shape.PAPER.equals(s.getShape()))
                         .findFirst().get().getCount()));
 
+    }
+
+    @Test
+    void clearStatistics() {
+        doNothing().when(repository).deleteAll();
+        gameService.clearStatistics();
+        verify(repository, times(1)).deleteAll();
     }
 
 }

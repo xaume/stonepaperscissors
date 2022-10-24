@@ -49,6 +49,7 @@ public class GameServiceImpl implements GameService {
         GameStatistics gameStatistics = new GameStatistics();
 
         List<GameResult> results = this.gameResultRepository.findAll();
+
         long totalWins = results.stream().filter(r -> Result.WIN.equals(r.getResult())).count();
         long totalDraws = results.stream().filter(r -> Result.DRAW.equals(r.getResult())).count();
         long totalLoss = results.stream().filter(r -> Result.LOSS.equals(r.getResult())).count();
@@ -61,6 +62,11 @@ public class GameServiceImpl implements GameService {
         gameStatistics.setComputerShapes(this.gameResultRepository.getComputerGamesByShape());
 
         return gameStatistics;
+    }
+
+    @Override
+    public void clearStatistics() {
+        this.gameResultRepository.deleteAll();
     }
 
     private Result compareHands(Shape playerShape, Shape computerShape) {

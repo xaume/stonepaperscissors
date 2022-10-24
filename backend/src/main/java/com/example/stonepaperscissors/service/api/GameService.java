@@ -10,4 +10,6 @@ public interface GameService {
 
     GameStatistics getStatistics();
 
+    void clearStatistics();
+
 }

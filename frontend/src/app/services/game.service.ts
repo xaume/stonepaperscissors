@@ -23,4 +23,8 @@ export class GameService {
   public getStatistics() {
     return this.http.get<GameStatistics> (this.baseUrl + 'statistics/');
   }
+
+  public deleteStatistics() {
+    return this.http.delete<void> (this.baseUrl + 'statistics/');
+  }
 }

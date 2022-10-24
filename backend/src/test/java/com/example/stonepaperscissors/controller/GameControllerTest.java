@@ -42,7 +42,7 @@ class GameControllerTest {
     }
 
     @Test
-    void statisticsReturnsData() {
+    void getStatisticsReturnsData() {
         var statistics = TestUtils.getStatistics();
         when(this.gameService.getStatistics()).thenReturn(statistics);
 
@@ -55,7 +55,7 @@ class GameControllerTest {
     }
 
     @Test
-    void statisticsThrowsError() {
+    void getStatisticsThrowsError() {
         doThrow(new RuntimeException()).when(this.gameService).getStatistics();
 
         var response = this.gameController.getGameStatistics();

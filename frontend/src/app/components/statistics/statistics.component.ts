@@ -10,20 +10,16 @@ import { GameService } from 'src/app/services/game.service';
 export class StatisticsComponent implements OnInit {
   
   statistics: GameStatistics | undefined;
-
   playerData: {name: string, value: number}[] = [];
   computerData: {name: string, value: number}[] = [];
   resultsData: {name: string, value: number}[] = [];
-
-  // Graph options
-  showLabels: boolean = true;
-  scheme: string = "cool";
-  
-  
+ 
   constructor(private gameService: GameService) { 
     this.gameService.getStatistics().subscribe(data => {
-      this.statistics = data;
 
+      if (data.playedGames > 0) {        
+        this.statistics = data;
+        
         for (let shapeCount of this.statistics.playerShapes) {
           this.playerData.push({name: shapeCount.shape, value: shapeCount.count});
         }
@@ -33,6 +29,7 @@ export class StatisticsComponent implements OnInit {
         this.resultsData.push({name: "Win", value:this.statistics.totalWins });
         this.resultsData.push({name: "Lost", value:this.statistics.totalLoss });
         this.resultsData.push({name: "Draw", value:this.statistics.totalDraws });
+      }
     });
   }
   
@@ -40,4 +37,13 @@ export class StatisticsComponent implements OnInit {
 
   }
   
+  resetStatistics() {
+    this.gameService.deleteStatistics().subscribe(data => {
+      this.statistics = undefined;
+      this.playerData = [];
+      this.computerData = [];
+      this.resultsData = [];
+    });
+  }
+
 }

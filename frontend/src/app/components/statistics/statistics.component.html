@@ -1,6 +1,6 @@
 <h2>Game statistics</h2>
 
-<div class="statistics" *ngIf="statistics">
+<div class="statistics" *ngIf="statistics else noData">
   <div class="game-totals">
     <h3>Played games</h3>
     <ngx-charts-advanced-pie-chart
@@ -9,6 +9,7 @@
     >
     </ngx-charts-advanced-pie-chart>
   </div>
+  <a class="button" (click)="resetStatistics()">Clear data</a>
 
   <div class="shape-totals">
 
@@ -34,3 +35,7 @@
 
   </div>
 </div>
+
+<ng-template #noData>
+  No games played yet
+</ng-template>

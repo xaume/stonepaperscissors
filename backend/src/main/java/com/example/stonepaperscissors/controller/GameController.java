@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +48,17 @@ public class GameController {
             return ResponseEntity.ok(this.gameService.getStatistics());
         } catch (Exception e) {
             log.error("An error happened trying to recover statistics", e);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+    @Operation(summary = "Delete game statistics")
+    @DeleteMapping("/statistics")
+    public ResponseEntity<Object> deleteGameStatistics() {
+        try {
+            this.gameService.clearStatistics();
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            log.error("An error happened trying to remove statistics", e);
             return ResponseEntity.internalServerError().build();
         }
     }
