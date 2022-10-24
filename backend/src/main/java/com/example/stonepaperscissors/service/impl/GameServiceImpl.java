@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.stonepaperscissors.common.Result;
 import com.example.stonepaperscissors.common.Shape;
+import com.example.stonepaperscissors.common.Utils;
 import com.example.stonepaperscissors.dataaccess.entity.GameResult;
 import com.example.stonepaperscissors.dataaccess.repository.GameResultRepository;
 import com.example.stonepaperscissors.service.api.GameService;
@@ -30,35 +31,36 @@ public class GameServiceImpl implements GameService {
     public GameResultTo playGame(Shape playerShape) {
         GameResultTo gameResult = new GameResultTo();
 
-        Shape computerShape = Shape.randomShape();
+        Shape computerShape = Utils.randomShape();
         Result result = compareHands(playerShape, computerShape);
-        log.info("Player: {} vs Computer: {} - Result: {}", playerShape, computerShape, result);
 
         gameResult.setPlayerShape(playerShape);
         gameResult.setComputerShape(computerShape);
         gameResult.setResult(result);
         saveGameResult(gameResult);
 
+        log.info("[Player] {} vs {} [Computer] - Result: {}", playerShape, computerShape, result);
+
         return gameResult;
     }
 
     @Override
     public GameStatistics getStatistics() {
-        GameStatistics gameSummary = new GameStatistics();
+        GameStatistics gameStatistics = new GameStatistics();
 
         List<GameResult> results = this.gameResultRepository.findAll();
         long totalWins = results.stream().filter(r -> Result.WIN.equals(r.getResult())).count();
         long totalDraws = results.stream().filter(r -> Result.DRAW.equals(r.getResult())).count();
         long totalLoss = results.stream().filter(r -> Result.LOSS.equals(r.getResult())).count();
 
-        gameSummary.setPlayedGames(results.size());
-        gameSummary.setTotalWins(totalWins);
-        gameSummary.setTotalDraws(totalDraws);
-        gameSummary.setTotalLoss(totalLoss);
-        gameSummary.setPlayerShapes(this.gameResultRepository.getPlayerGamesByShape());
-        gameSummary.setComputerShapes(this.gameResultRepository.getComputerGamesByShape());
+        gameStatistics.setPlayedGames(results.size());
+        gameStatistics.setTotalWins(totalWins);
+        gameStatistics.setTotalDraws(totalDraws);
+        gameStatistics.setTotalLoss(totalLoss);
+        gameStatistics.setPlayerShapes(this.gameResultRepository.getPlayerGamesByShape());
+        gameStatistics.setComputerShapes(this.gameResultRepository.getComputerGamesByShape());
 
-        return gameSummary;
+        return gameStatistics;
     }
 
     private Result compareHands(Shape playerShape, Shape computerShape) {
