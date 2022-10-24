@@ -19,12 +19,9 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  play (shapeSelected: string) {
-    console.log(`Selected ${shapeSelected.toUpperCase()}`);
-    
+  play (shapeSelected: string) {   
     this.gameService.play(shapeSelected.toUpperCase()).subscribe( data => {
       this.gameResult = data;
-      console.log(this.gameResult);
     });
     
   }
