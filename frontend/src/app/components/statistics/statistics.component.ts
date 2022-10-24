@@ -40,17 +40,4 @@ export class StatisticsComponent implements OnInit {
 
   }
   
-  
-  onSelect(data: ShapeCount): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-  }
-  
-  onActivate(data: ShapeCount): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-  
-  onDeactivate(data: ShapeCount): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
-  }
-  
 }
