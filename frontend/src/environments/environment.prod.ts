@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://jaime-sps-backend.herokuapp.com/sps/game/'
+  baseUrl: 'https://stonepaperscissorsjava.azurewebsites.net/sps/game/'
 };
